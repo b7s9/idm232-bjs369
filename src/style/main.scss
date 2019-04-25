@@ -1,0 +1,87 @@
+// --------------------------------------------------------
+// Includes
+// --------------------------------------------------------
+
+$mobile-w-min: 20rem; //320px mobile
+$tablet-w-min: 48rem; //768px tablet
+$laptop-w-min: 64rem; //1024px laptop
+$desktop-w-min: 80rem; //1280px desktop
+
+// @font-face {
+//     font-family: "Futura PT";
+//     font-weight: 300;
+//     font-variant: normal;
+//     src: url('../assets/fonts/FuturaPT-Light.woff'),
+//         url('../assets/fonts/FuturaPT-Light.woff2');
+// }
+
+}
+
+// --------------------------------------------------------
+// Typography
+// --------------------------------------------------------
+
+html {
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
+
+// --------------------------------------------------------
+// Layout
+// --------------------------------------------------------
+
+@media screen and (min-width: $mobile-w-min){
+    // default
+}
+
+@media screen and (min-width: $tablet-w-min){
+    // html {
+    //     background-color: lightblue;
+    // }
+}
+
+@media screen and (min-width: $laptop-w-min){
+    // html {
+    //     background-color: orange;
+    // }
+}
+
+@media screen and (min-width: $desktop-w-min){
+    // html {
+    //     background-color: yellow;
+    // }
+}
+
+html {
+    box-sizing: border-box
+    font-size: 100%;
+}
+
+p {
+    color: #272727;
+}
+
+a {
+    border-bottom: 1px solid rgba(168, 90, 41, 0);
+    color: #a85a29;
+    text-decoration: none;
+    transition: border-bottom 119ms ease-in;
+    // transition: color 225ms ease-in-out;
+}
+
+a:hover {
+    // color: #d38250;
+    border-bottom: 1px solid rgba(168, 90, 41, 1);
+}
+
+
+
+main {
+
+
+}
+
+// --------------------------------------------------------
+// Color
+// --------------------------------------------------------
