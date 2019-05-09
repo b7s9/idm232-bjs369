@@ -4,9 +4,6 @@ const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
 const eslint = require('gulp-eslint');
 const uglify = require('gulp-uglify');
-// const gulpIf = require('gulp-if');
-// const argv = require('yargs').argv;
-// const del = require('del');
 
 const sass = require('gulp-sass');
 
@@ -15,7 +12,7 @@ const sass = require('gulp-sass');
 // --------------------------------------------------------
 
 gulp.task('html', () => {
-	return gulp.src('./src/index.html')
+	return gulp.src('./src/*.html')
 		.pipe(gulp.dest('./build/'));
 });
 
@@ -24,7 +21,6 @@ gulp.task('html', () => {
 // --------------------------------------------------------
 
 gulp.task('js', () => {
-	// del(['./build/js/*.+(js|map)']);
 	return gulp.src('./src/js/*.js') // or 'src/**/*.js'
 
 		// lint
@@ -36,7 +32,6 @@ gulp.task('js', () => {
 
 		// compile
 		.pipe(sourcemaps.init())
-		// .pipe( gulpIf(argv.production, concat('main.min.js'), concat('main.js') ) )
 		.pipe(concat('main.min.js'))
 		.pipe(babel({
 			presets: ['env']
@@ -48,7 +43,7 @@ gulp.task('js', () => {
 
 gulp.task('watch', () => {
 	gulp.watch('./src/js/**/*.js', ['js']);
-	gulp.watch('./src/index.html', ['html']);
+	gulp.watch('./src/*.html', ['html']);
 	gulp.watch('./src/style/*.+(scss|sass)', ['css']);
 });
 
@@ -60,7 +55,6 @@ gulp.task('default', ['watch']);
 // --------------------------------------------------------
 
 gulp.task('css', () => {
-	// del(['./build/css/*.+(css|map)']);
 	return gulp.src('./src/style/*.+(scss|sass)')
 		.pipe(sourcemaps.init())
 		.pipe(concat('main.min.css'))
