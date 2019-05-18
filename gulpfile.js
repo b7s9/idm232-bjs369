@@ -11,10 +11,17 @@ const sass = require('gulp-sass');
 // HTML
 // --------------------------------------------------------
 
-gulp.task('html', () => {
-	return gulp.src('./src/*.html')
+gulp.task('rootHtml', () => {
+	return gulp.src('./src/*.+(html|php)')
 		.pipe(gulp.dest('./build/'));
 });
+
+gulp.task('includes', () => {
+	return gulp.src('./src/includes/*.+(html|php)')
+		.pipe(gulp.dest('./build/includes/'));
+});
+
+gulp.task('html', ['rootHtml', 'includes']);
 
 // --------------------------------------------------------
 // JS
@@ -41,21 +48,29 @@ gulp.task('js', () => {
 		.pipe(gulp.dest('./build/js'));
 });
 
+// --------------------------------------------------------
+// Util
+// --------------------------------------------------------
+
 gulp.task('watch', () => {
 	gulp.watch('./src/js/**/*.js', ['js']);
-	gulp.watch('./src/*.html', ['html']);
+	gulp.watch('./src/**/*.+(html|php)', ['html']);
 	gulp.watch('./src/style/*.+(scss|sass)', ['css']);
 });
 
 gulp.task('default', ['watch']);
 
+gulp.task('prod', ()=> {
+	return gulp.src('./build/**/*')
+		.pipe(gulp.dest('/Users/finch/.bitnami/stackman/machines/xampp/volumes/root/htdocs/dir/idm232-bjs369-build'));
+});
 
 // --------------------------------------------------------
 // STYLE
 // --------------------------------------------------------
 
 gulp.task('css', () => {
-	return gulp.src('./src/style/*.+(scss|sass)')
+	return gulp.src('./src/style/*.+(scss|sass|css)')
 		.pipe(sourcemaps.init())
 		.pipe(concat('main.min.css'))
 		.pipe(sass({
