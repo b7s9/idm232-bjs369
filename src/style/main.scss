@@ -1,18 +1,18 @@
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Includes
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-@import 'fonts'; //why the fuck does this never work
+@import 'fonts'; //fuck transfonter for silently failing
+@import 'colors';
 
 $mobile-w-min: 20rem; //320px mobile
 $tablet-w-min: 48rem; //768px tablet
 $laptop-w-min: 64rem; //1024px laptop
 $desktop-w-min: 80rem; //1280px desktop
 
-
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Typography
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 $sans: -apple-system, 'Helvetica Neue', Helvetica, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
 
@@ -29,26 +29,75 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 2.6rem;
+    font-size: 2.25rem;
+    line-height: 1.25;
+
+    @media screen and (min-width: $tablet-w-min){
+        font-size: 2.6rem;       
+    }
+}
+
+header.jumbotron {
+    h1 {
+        font-size: 4rem;
+        text-align: center;
+    }
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
+    
+    @media screen and (min-width: $tablet-w-min){
+        font-size: 1.6rem;        
+    }
 }
 
 a {
     text-decoration: none;
 }
 
+.search.powerbar {
+    text-align: center;
+
+    input {
+        font-size: 1rem;
+        padding: 1rem;
+        text-align: center;
+        width: 80%;
+
+        @media screen and (min-width: $tablet-w-min){
+            width: 50%;            
+        }
+    }
+}
+
 div.banner {
+
+    .ico {
+        display: block;
+
+        @media screen and (min-width: $tablet-w-min) {
+            display: none;
+        }
+    }
     
     .logo {
-        font-size: 3rem;
+        font-family: 'Permanent-Marker', $sans;
+        font-size: 2rem;
+
+        @media screen and (min-width: $tablet-w-min){
+            font-size: 3rem;
+        }
     }
 
     button.nav-toggle {
         font-size: 1.5rem;
         white-space: nowrap;
+        display: none;
+
+        @media screen and (min-width: $tablet-w-min) {
+            display: block;
+        }
     }
 
     .search {
@@ -60,38 +109,25 @@ div.banner {
         input {
             font-size: 1rem;
             padding: 1rem;
+
+            display: none;
+
+            @media screen and (min-width: $tablet-w-min) {
+                display: block;
+            }
         }
     }
 }
 
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Layout
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-@media screen and (min-width: $mobile-w-min){
-    // default
-}
 
-@media screen and (min-width: $tablet-w-min){
-    // html {
-    //     background-color: lightblue;
-    // }
-}
-
-@media screen and (min-width: $laptop-w-min){
-    // html {
-    //     background-color: orange;
-    // }
-}
-
-@media screen and (min-width: $desktop-w-min){
-    // html {
-    //     background-color: yellow;
-    // }
-}
-
-// Helper classes
+// ------------------------------------------------
+// Helper Classes
+// ------------------------------------------------
 
 .visually-hidden {
     height: 0;
@@ -101,7 +137,35 @@ div.banner {
 
 }
 
-// Elements
+.two-col {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: 1fr;            
+    margin: 0 auto;
+    width: 100%;
+
+    li, a {
+        grid-column: 1;
+    }
+
+    @media screen and (min-width: $tablet-w-min){
+        grid-template-columns: repeat(2, 1fr);                           
+        
+        width: 80%;
+
+        li:nth-child(odd), a:nth-child(odd) {
+            grid-column: 1;
+        }
+
+        li:nth-child(even), a:nth-child(even) {
+            grid-column: 2;
+        }
+    }
+}
+
+// ------------------------------------------------
+// Global Elements
+// ------------------------------------------------
 
 html, body {
     margin: 0;
@@ -113,9 +177,24 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
+
+    li {
+        margin-bottom: 1rem;
+    }
 }
 
-// User defined
+p {
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+// ------------------------------------------------
+// User Definitions
+// ------------------------------------------------
+
+// ------------------------------------------------
+// Top Banner
+// ------------------------------------------------
 
 div.banner {
     box-sizing: border-box;
@@ -126,6 +205,7 @@ div.banner {
     width: 100vw;
     
     .flex-wrapper {
+        align-items: center;
         display: flex;
         justify-content: space-between;
     }
@@ -136,23 +216,33 @@ div.banner {
     }
 
     button.nav-toggle {
-        display: inline-block;
-
-        padding: 0.25rem 1rem;
+        padding: 1rem 2rem;
     }
 
     nav {
 
+        ul {
+            margin-top: 2rem;
+            text-align: center;
+
+            li {
+                margin-bottom: 1rem;
+            }
+        }
+
+        
         @media screen and (min-width: $tablet-w-min){            
             padding-top: 2rem;
-
 
             ul {
                 display: flex;
                 justify-content: space-between;
+                margin: 0;
+                text-align: left;
+
 
                 li {
-                    // margin-bottom: 0.25rem;
+                    margin-bottom: 0;
                 }
 
                 a {
@@ -168,15 +258,24 @@ div.banner {
     }
 }
 
-
-
+// ------------------------------------------------
+// Main
+// ------------------------------------------------
 main {
     margin-top: 7rem;
+}
+
+main.no-banner {
+    margin-top: 2rem;
+}
+
+main {
     display: grid;
     grid-template-columns: 1rem 1fr 80vw 1fr 1rem;
+    grid-auto-flow: row;
 
     * {
-        grid-column: 2 / 5;
+        grid-column: 3 / 4;
     }
 
     header {
@@ -184,12 +283,24 @@ main {
         grid-column: 3 / 4;
     }
 
+    h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+
     picture, img {
-        max-width: 200px;
+        display: block;
+        max-width: 100%;
         height: auto;
+        margin: 0 auto;
+        margin-bottom: 2rem;
 
         @media screen and (min-width: $tablet-w-min){
-            max-width: 500px;
+            max-width: 80%;
         }
     }
 
@@ -221,28 +332,132 @@ main {
 
     .ingredients {
         grid-row: 5;
+
+        ul {
+            display: grid;
+            grid-auto-flow: dense;
+            grid-template-columns: 1fr;            
+            margin: 0 auto;
+            width: 100%;
+
+            @media screen and (min-width: $tablet-w-min){
+                grid-template-columns: repeat(2, 1fr);                           
+                
+                width: 80%;
+
+                li:nth-child(odd) {
+                    grid-column: 1;
+                }
+    
+                li:nth-child(even) {
+                    grid-column: 2;
+                }
+            }
+
+            
+        }
     }
 
     .steps {
         grid-row: 7;
     }
 
+    // -------------------------------
+    
+    .results {
+        h4 {
+            text-align: center;
+        }
+    }
+
 }
 
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Color
-// --------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+html, body, main {
+    background-color: $white;
+}
+
+h1, h2 {
+    color: $primary-orange;
+}
+
+.jumbotron h1 {
+    color: $primary-blue;
+}
+
+hr {
+    color: $mid-grey;
+}
+
+button {
+
+    background: none;
+    background-color: $primary-blue;
+    border: none;
+    color: $white;
+    outline: none;
+    transition: background-color 119ms ease-in-out;
+
+}
+
+button:hover {
+    background-color: $primary-blue-dark;
+    cursor: pointer;
+}
+
+button:focus, button:active {
+    border: $primary-blue 2px solid;
+    outline: $primary-blue;
+
+}
 
 a {
-    border-bottom: 3px solid rgba(0,0,0, 0);
+    color: $primary-orange;
+    border-bottom: 2px solid rgba(0,0,0, 0);
     transition: border-bottom 119ms ease-in;
 }
 
 a:hover, a:focus {
     // color: #d38250;
-    border-bottom: 3px solid rgba(168, 90, 41, 1);
+    border-bottom: 3px solid $primary-orange;
 }
 
-.banner {
+// ------------------------------------------------
+// User Defined
+// ------------------------------------------------
+
+.ico svg g, .ico svg path {
+    fill: $primary-blue;
+    stroke: $primary-blue;
+}
+
+.banner {  
+
     background-color: #fafafa;
+}
+
+.logo {
+    color: $primary-blue;
+}
+
+.results {
+
+    header h4 {
+        color: $primary-blue;
+    }
+
+    a {
+        background-color: none;
+        border: none;
+        transition: box-shadow 119ms ease-in-out, background-color 119ms ease-in-out;
+    }
+
+    a:hover {
+        background-color: $off-white;
+        border: none;
+        box-shadow: $mid-grey 1px 1px 6px;
+    }
 }
