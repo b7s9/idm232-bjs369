@@ -2,7 +2,8 @@
 // Toggle Nav and Search
 //---------------------------------------------------------------------------
 
-const navBtn = document.querySelector('.banner button.nav-toggle');
+const navBtn = document.querySelector('.banner .nav-toggle button');
+const navBtnIco = document.querySelector('.banner .nav-toggle .ico');
 const nav = document.querySelector('nav');
 
 let isNavOpen = 0;
@@ -29,23 +30,30 @@ const toggleNav = () => {
 }
 
 navBtn.addEventListener('click',toggleNav);
+navBtnIco.addEventListener('click',toggleNav);
 
-// const searchLabel = document.querySelector('.search label');
-// const searchbar = document.querySelector('.search input');
+const searchIco = document.querySelector('.search .ico');
+const searchbar = document.querySelector('.search input');
 
 // let isSearchVisible = 0;
 
 // const toggleSearchbar = ()=> {
-
 //     if(isSearchVisible){
-//         hideElement(searchLabel);
-//         showElement(searchbar);
+//         // hideElement(searchIco);
+//         searchbar.style.display = 'none';
 //         isSearchVisible = 1;
 //     }else {
-//         showElement(searchLabel);
-//         hideElement(searchbar);
+//         console.log(searchbar)
+//         // showElement(searchIco);
+//         searchbar.style.display = 'block';
 //         isSearchVisible = 0;
 //     }
 // }
 
-// searchLabel.addEventListener('click', toggleSearchbar);
+// searchIco.addEventListener('click', toggleSearchbar);
+
+
+searchIco.addEventListener('click', (e)=>{
+    window.location.href = 'search.html';
+});
+
