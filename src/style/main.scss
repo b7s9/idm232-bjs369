@@ -2,28 +2,66 @@
 // Includes
 // --------------------------------------------------------
 
+@import 'fonts'; //why the fuck does this never work
+
 $mobile-w-min: 20rem; //320px mobile
 $tablet-w-min: 48rem; //768px tablet
 $laptop-w-min: 64rem; //1024px laptop
 $desktop-w-min: 80rem; //1280px desktop
 
-// @font-face {
-//     font-family: "Futura PT";
-//     font-weight: 300;
-//     font-variant: normal;
-//     src: url('../assets/fonts/FuturaPT-Light.woff'),
-//         url('../assets/fonts/FuturaPT-Light.woff2');
-// }
-
-}
 
 // --------------------------------------------------------
 // Typography
 // --------------------------------------------------------
 
+$sans: -apple-system, 'Helvetica Neue', Helvetica, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+
 html {
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    font-family: $sans;
     font-weight: normal;
+    font-size: 100%;
+}
+
+h1, h2 {
+    font-family: 'Permanent-Marker', $sans;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.6rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+div.banner {
+    
+    .logo {
+        font-size: 3rem;
+    }
+
+    button.nav-toggle {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    .search {
+
+        label {
+            font-size: 1.75rem;
+        }
+
+        input {
+            font-size: 1rem;
+            padding: 1rem;
+        }
+    }
 }
 
 
@@ -53,35 +91,158 @@ html {
     // }
 }
 
-html {
-    box-sizing: border-box
-    font-size: 100%;
+// Helper classes
+
+.visually-hidden {
+    height: 0;
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+
 }
 
-p {
-    color: #272727;
+// Elements
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-a {
-    border-bottom: 1px solid rgba(168, 90, 41, 0);
-    color: #a85a29;
-    text-decoration: none;
-    transition: border-bottom 119ms ease-in;
-    // transition: color 225ms ease-in-out;
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-a:hover {
-    // color: #d38250;
-    border-bottom: 1px solid rgba(168, 90, 41, 1);
+// User defined
+
+div.banner {
+    box-sizing: border-box;
+    box-shadow: #666 1px 1px 4px;
+    padding: 1rem;
+    position: fixed;    
+    top: 0;
+    width: 100vw;
+    
+    .flex-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .logo {
+
+        display: inline-block;
+    }
+
+    button.nav-toggle {
+        display: inline-block;
+
+        padding: 0.25rem 1rem;
+    }
+
+    nav {
+
+        @media screen and (min-width: $tablet-w-min){            
+            padding-top: 2rem;
+
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+
+                li {
+                    // margin-bottom: 0.25rem;
+                }
+
+                a {
+                    padding: 0.9rem;
+                }
+            }
+        }        
+
+    }
+
+    div.search {
+        display: inline-block;        
+    }
 }
 
 
 
 main {
+    margin-top: 7rem;
+    display: grid;
+    grid-template-columns: 1rem 1fr 80vw 1fr 1rem;
 
+    * {
+        grid-column: 2 / 5;
+    }
+
+    header {
+        margin-bottom: 2rem;
+        grid-column: 3 / 4;
+    }
+
+    picture, img {
+        max-width: 200px;
+        height: auto;
+
+        @media screen and (min-width: $tablet-w-min){
+            max-width: 500px;
+        }
+    }
+
+    div.hero {
+        margin: 0 auto;
+        grid-column: 2 / 5;        
+        
+    }
+
+    header.intro {
+        grid-row: 1;
+    }
+
+    div.intro.hero {
+        grid-row: 2;
+    }
+
+    .desc {
+        grid-row: 3;
+    }
+
+    .kitchen-tool {
+        grid-row: 4;
+
+        figcaption {
+            display: block;
+        }
+    }
+
+    .ingredients {
+        grid-row: 5;
+    }
+
+    .steps {
+        grid-row: 7;
+    }
 
 }
 
 // --------------------------------------------------------
 // Color
 // --------------------------------------------------------
+
+a {
+    border-bottom: 3px solid rgba(0,0,0, 0);
+    transition: border-bottom 119ms ease-in;
+}
+
+a:hover, a:focus {
+    // color: #d38250;
+    border-bottom: 3px solid rgba(168, 90, 41, 1);
+}
+
+.banner {
+    background-color: #fafafa;
+}
