@@ -19,8 +19,8 @@
     ],
     "indent": 0,
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
+    "quotes": ["warn", "single"],
+    "semi": ["warn", "always"],
     "no-unused-vars": "warn"
   }
 }
