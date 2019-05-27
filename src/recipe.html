@@ -13,14 +13,21 @@
 <body>
 
     <div class="banner">
-        <div class="logo">Füd</div>
-        <nav>
-            <header>
-                <hr>
-                <button>Go To</button>
-                <hr>
-            </header>
-            <div class="menu">
+        <div class="flex-wrapper">
+        
+            <div class="logo">Füd</div>
+            <button class="nav-toggle">Go To</button>           
+            <div class="search">
+                <!-- <div class="search-ico"></div> -->
+                <!-- <label for="search">Search</label> -->
+                <div class="input">
+                    <input type="text" name="search" id="search" placeholder="Search for a recipe...">
+                </div>
+            </div>
+        </div>
+
+        <nav class="visually-hidden">                
+            <!-- <div class="menu"> -->
                 <ul>
                     <li><a href="#desc">Description</a></li>
                     <li><a href="#ingredients">Ingredients</a></li>
@@ -29,23 +36,18 @@
                     <li><a href="#">Find a Recipe</a></li>
                     <li><a href="#">I'm Feeling Lucky</a></li>
                 </ul>
-            </div>
+            <!-- </div> -->
         </nav>
-        <div class="search">
-            <div class="search-ico">Search icon</div>
-            <div class="input">
-                <input type="text" name="search" placeholder="Search for a recipe...">
-            </div>
-        </div>
+
     </div>
 
     <main>
-        <header>
+        <header class="intro">
             <h1>Bucatini & Tomato Sauce</h1>
             <h2>with Roasted Broccoli</h2>
         </header>
         
-        <div class="hero">
+        <div class="intro hero">
             <picture>
                 <!-- <source media="(min-width:48rem)"> -->
                 <source srcset="assets/img/0101_2PV1_Broccoli-Bucatini-Fettuccine_97230_SQ_hi_res.jpg">
@@ -77,8 +79,10 @@
                     <source srcset="assets/img/Stainless_Steel_Strainer_1829.jpg">
                     <img src="assets/img/Stainless_Steel_Strainer_1829.jpg" alt="Kitchen Tool">
                 </picture>
+                <figcaption>
+                        <a href="#">Supplier Link</a>
+                </figcaption>
 
-                <a href="#">Supplier Link</a>
                 <p>A stainless steel strainer is a handy tool for quinoa. It's great for draining grains and pastas (not to
                         mention small fruits and vegetables after washing) and straining stocks and gravy. Lightweight and
                         sturdy, itʼs constructed with a double-fine mesh.</p>
