@@ -12,6 +12,9 @@
         );
     }
 
+    mysqli_query($connection, "SET NAMES 'utf8'");
+
+
     //------------
     // Get recipe
     // $queryRecipe = "SELECT * FROM recipe WHERE id LIKE '0da65b64c460b6887dc3109e77f1e481'";

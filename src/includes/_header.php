@@ -1,3 +1,7 @@
+<?php
+ini_set('default_charset','utf-8');
+header('Content-type: text/html; charset=utf-8');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
