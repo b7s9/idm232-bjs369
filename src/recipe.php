@@ -113,8 +113,8 @@
                 <?php
                     mysqli_data_seek($resultRecipe, 0);
                     while($recipeRow = $resultRecipe->fetch_assoc()) {
-                        echo "<source srcset='assets/img/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}'>";
-                        echo "<img src='assets/img/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}' alt='a picture'>";
+                        echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}'>";
+                        echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}' alt='a picture'>";
                     }
                 ?>
             </picture>
@@ -154,8 +154,8 @@
 
             <div class="content">
                 <picture>
-                    <source srcset="<?php echo "assets/img/howTo/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>">
-                    <img src="<?php echo "assets/img/howTo/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>" alt="Kitchen Tool">
+                    <source srcset="<?php echo "{$howToImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>">
+                    <img src="<?php echo "{$howToImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>" alt="Kitchen Tool">
                 </picture>
                 <figcaption>
                         <a href="#"><?php echo $kitchenRow['title']; ?></a>
@@ -177,17 +177,31 @@
                 <hr>
             </header>
 
-            <div class="content">
+            <div class="content">                
                 <picture>
-                    <source srcset="assets/img/ING_1-1_2PV1_large_feature.png">
-                    <img src="assets/img/ING_1-1_2PV1_large_feature.png" alt="Ingredients">
+                    <?php
+                        mysqli_data_seek($resultRecipe, 0);
+                        while($recipeRow = $resultRecipe->fetch_assoc()) {
+                            echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['ingredientImgLink']}'>";
+                            echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['ingredientImgLink']}' alt='Ingredients'>";
+                        }
+                    ?>
                 </picture>
 
                 <ul class="two-col">
-                    <li>2 Tbsps Crème Fraîche</li>
+                    <?php
+                        mysqli_data_seek($resultRecipe, 0);
+                        while($recipeRow = $resultRecipe->fetch_assoc()) {
+                            $ingredientList = preg_split('/\R/', $recipeRow['ingredientList']);
+                            foreach($ingredientList as $ingredient){
+                                echo "<li>{$ingredient}</li>";
+                            }
+                        }
+                    ?>
+                    <!-- <li>2 Tbsps Crème Fraîche</li>
                     <li>¼ tsp Crushed Red Pepper Flakes</li>
                     <li>3 Tbsps All-Purpose Flour</li>
-                    <li>¼ cup Grated Pecorino Cheese</li>
+                    <li>¼ cup Grated Pecorino Cheese</li> -->
                 </ul>
             </div>
 
