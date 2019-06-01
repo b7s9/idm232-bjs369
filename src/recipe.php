@@ -198,10 +198,6 @@
                             }
                         }
                     ?>
-                    <!-- <li>2 Tbsps Crème Fraîche</li>
-                    <li>¼ tsp Crushed Red Pepper Flakes</li>
-                    <li>3 Tbsps All-Purpose Flour</li>
-                    <li>¼ cup Grated Pecorino Cheese</li> -->
                 </ul>
             </div>
 
@@ -216,6 +212,19 @@
 
             <div class="content">
 
+                <?php
+                    mysqli_data_seek($resultRecipe, 0);
+                    while($recipeRow = $resultRecipe->fetch_assoc()) {
+                       
+                        $instructionList = preg_split('/```/', $recipeRow['instructionList']);
+                        
+                        foreach($instructionList as $instruction){
+                                                        
+                            echo "<p>{$instruction}</p>";
+                        }
+                    }
+                ?>
+
                 <div class="step">
                     <picture>
                         <source srcset="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18429_WEB_retina_feature.jpg">
@@ -227,60 +236,7 @@
                     </header>
 
                     <p>Heat a large pot of salted water to boiling on high. Wash and dry the fresh produce. Cut off and discard the bottom 1/2 inch of the broccoli stem; cut the broccoli into small pieces, keeping the florets intact. Peel and finely chop the garlic.</p>
-                </div>
-
-                <div class="step">
-                    <picture>
-                        <source srcset="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18403_WEB_retina_feature.jpg">
-                        <img src="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18403_WEB_retina_feature.jpg" alt="Step 2">
-                    </picture>
-
-                    <header>
-                        <h4>2. Cook the broccoli:</h4>                        
-                    </header>
-
-                    <p>In a large pan, heat 2 teaspoons of olive oil on medium-high until hot. Add the broccoli pieces; season with salt and pepper. Cook, stirring occasionally, 4 to 5 minutes, or until slightly softened. Add 1/2 cup of water; season with salt and pepper. Cover the pan with aluminum foil and cook 3 to 4 minutes, or until the broccoli has softened and the water has cooked off. Transfer to a bowl. Wipe out the pan.</p>
-                </div>
-
-                <div class="step">
-                    <picture>
-                        <source srcset="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18406_WEB_retina_feature.jpg">
-                        <img src="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18406_WEB_retina_feature.jpg" alt="Step 2">
-                    </picture>
-
-                    <header>
-                        <!-- <h4>3.</h4> -->
-                    </header>
-
-                    <p>While the broccoli cooks, add the pasta to the pot of boiling water and cook 8 to 10 minutes, or until al dente (still slightly firm to the bite). Reserving 1⁄2 cup of the pasta cooking water, drain thoroughly.</p>
-                </div>
-
-                <div class="step">
-                    <picture>
-                        <source srcset="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18416_WEB_retina_feature.jpg">
-                        <img src="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18416_WEB_retina_feature.jpg" alt="Step 2">
-                    </picture>
-
-                    <header>
-                        <!-- <h4>4.</h4>   -->
-                    </header>
-
-                    <p>In the same pan, heat 1 1/2 tablespoons of olive oil on medium-high until hot.</p>
-                    <p>Add the chopped garlic; season with salt and pepper. Cook, stirring constantly, 30 seconds to 1 minute, or until fragrant. Add the flour and as much of the red pepper flakes as you’d like, depending on how spicy you’d like the dish to be. Cook, stirring constantly, 30 seconds to 1 minute, or until thoroughly combined. Add the heavy cream (shaking the bottle just before opening), verjus, and 1 1/4 cups of water; season with salt and pepper. Cook, whisking frequently, 2 to 3 minutes, or until thickened; season with salt and pepper to taste.</p>
-                </div>
-
-                <div class="step">
-                    <picture>
-                        <source srcset="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18431_WEB_retina_feature.jpg">
-                        <img src="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18431_WEB_retina_feature.jpg" alt="Step 2">
-                    </picture>
-
-                    <header>
-                        <h4>5. Finish & serve your dish:</h4>                        
-                    </header>
-
-                    <p>Add the cooked pasta, cooked broccoli, crème fraîche, and half the reserved pasta cooking water to the pan. Cook, stirring vigorously, 30 seconds to 1 minute, or until the pasta is thoroughly coated. (If the sauce seems dry, gradually add the remaining pasta cooking water to achieve your desired consistency.) Turn off the heat and season with salt and pepper to taste. Garnish the finished pasta with the cheese; season with pepper. Enjoy!</p>
-                </div>
+                </div>                
 
             </div>
 
