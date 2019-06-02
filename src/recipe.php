@@ -217,13 +217,8 @@
                     while($recipeRow = $resultRecipe->fetch_assoc()) {
                        
                         $instructionList = preg_split('/```/', $recipeRow['instructionList']);
-                        
                         foreach($instructionList as $instruction){
-                                                        
-                            echo "<p>{$instruction}</p>";
-                        }
-                    }
-                ?>
+                        ?>
 
                 <div class="step">
                     <picture>
@@ -231,16 +226,39 @@
                         <img src="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18429_WEB_retina_feature.jpg" alt="Step 1">
                     </picture>
 
-                    <header>
-                        <h4>1. Prepare the ingredients:</h4>                        
-                    </header>
+                        <?php    
+                            
+                            $instructionNewlineList = explode('\r\n', $instruction);
 
-                    <p>Heat a large pot of salted water to boiling on high. Wash and dry the fresh produce. Cut off and discard the bottom 1/2 inch of the broccoli stem; cut the broccoli into small pieces, keeping the florets intact. Peel and finely chop the garlic.</p>
-                </div>                
+                            foreach($instructionNewlineList as $instructionNewline){
+                                
+                                $instructionSplitList = explode(',,,', $instructionNewline);
+
+                                if( count($instructionSplitList) > 1){
+                                    echo "<header>";
+                                    echo "<h4>" . trim($instructionSplitList[0]) . "</h4>";
+                                    echo "</header>";
+
+                                    echo "<p>" . trim($instructionSplitList[1]) . "</p>";                            
+                                    
+                                }else{
+                                    echo "<p>" . trim($instructionSplitList[0]) . "</p>";                            
+
+                                }                           
+                            }
+                            ?>
+                </div> 
+                <!-- close step -->
+
+                            <?php
+                        } //foreach step
+                    } // this recipe row (sql)
+                ?>                             
 
             </div>
 
         </div>
+        <!-- close instructions -->
 
     </main>
 <?php
