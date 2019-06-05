@@ -54,6 +54,6 @@ const searchbar = document.querySelector('.search input');
 
 
 searchIco.addEventListener('click', (e)=>{
-    window.location.href = 'search.html';
+    window.location.href = 'search.php';
 });
 

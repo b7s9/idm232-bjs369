@@ -39,7 +39,7 @@ gulp.task('js', () => {
 
 		// compile
 		.pipe(sourcemaps.init())
-		.pipe(concat('main.min.js'))
+		// .pipe(concat('main.min.js'))
 		.pipe(babel({
 			presets: ['env']
 		}))
