@@ -4,7 +4,10 @@
 ?>
 
 <?php
-    $queryRecipe = "SELECT * FROM recipe WHERE id LIKE '15cf76ac4a9f42fa0cb00886bf1da458'";
+    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $urlQuery = parse_url($url, PHP_URL_QUERY);
+
+    $queryRecipe = "SELECT * FROM recipe WHERE id LIKE '{$urlQuery}'";
     $resultRecipe = mysqli_query($connection, $queryRecipe);
     if (!$resultRecipe) {
         die("Database query failed.");
