@@ -35,7 +35,7 @@
 
             <ul class="content two-col">
 
-                    <a href="recipe.html">
+                    <a href="recipe.php">
                         <div class="card">                            
                             <header>
                                 <h4>Crispy Chicken Sandwhiches</h4>
@@ -48,7 +48,7 @@
                         </div>
                     </a>
 
-                    <a href="recipe.html">
+                    <a href="recipe.php">
                         <div class="card">
                             <header>
                                 <h4>Mexican Spiced Barramundi</h4>
@@ -61,7 +61,7 @@
                         </div>
                     </a>
         
-                    <a href="recipe.html">
+                    <a href="recipe.php">
                         <div class="card">
                             <header>
                                 <h4>Roasted Chicken Fall Vegetables</h4>
@@ -74,7 +74,7 @@
                         </div>
                     </a>
                     
-                    <a href="recipe.html">
+                    <a href="recipe.php">
                         <div class="card">
                             <header>
                                 <h4>Roasted Red Pepper Pasta</h4>

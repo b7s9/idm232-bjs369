@@ -88,8 +88,8 @@
                     <li><a href="#ingredients">Ingredients</a></li>
                     <li><a href="#steps">Steps</a></li>
                     <li><a href="#how-to">How To</a></li>
-                    <li><a href="search.html">Find a Recipe</a></li>
-                    <li><a href="search.html#results">I'm Feeling Lucky</a></li>
+                    <li><a href="search.php">Find a Recipe</a></li>
+                    <li><a href="search.php#results">I'm Feeling Lucky</a></li>
                 </ul>
             <!-- </div> -->
         </nav>
