@@ -117,7 +117,7 @@
                     mysqli_data_seek($resultRecipe, 0);
                     while($recipeRow = $resultRecipe->fetch_assoc()) {
                         echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}'>";
-                        echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}' alt='a picture'>";
+                        echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}' alt='{$recipeRow['title']}'>";
                     }
                 ?>
             </picture>
@@ -264,6 +264,7 @@
         <!-- close instructions -->
 
     </main>
+    <script src="js/navbar.js"></script>
 <?php
     require_once('includes/_footer.php');
 ?>

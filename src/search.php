@@ -1,5 +1,20 @@
 <?php
     require_once('includes/_header.php');
+    require_once('includes/_db.php');
+?>
+
+<?php
+    $queryRecipe = "SELECT id,title,dir,subtitle,description,heroImgLink FROM recipe WHERE title LIKE '%Roasted%'";
+    $resultRecipes = mysqli_query($connection, $queryRecipe);
+    if (!$resultRecipes) {
+        die("Database query failed.");
+    }
+    // while($row = $resultRecipes->fetch_assoc()) {
+    //     echo var_dump($row);
+    //     echo "<hr>";
+    // }
+        
+    
 ?>
 <main class="no-banner">
         <header class="jumbotron">
@@ -35,8 +50,32 @@
 
             <ul class="content two-col">
 
-                    <a href="recipe.php">
-                        <div class="card">                            
+                <?php
+                    while($row = $resultRecipes->fetch_assoc()) {
+                        echo "<a href='recipe.php?{$row['id']}'>";
+                        
+                            echo "<div class='card'>";
+
+                                echo "<header>";
+                                echo "<h4>{$row['title']}</h4>";
+                                echo "</header>";
+
+                                echo "<div class='img'>";
+
+                                    echo "<picture>";
+                                        echo "<source srcset='{$recipeImgLink}/{$row['dir']}/{$row['heroImgLink']}'>";
+                                        echo "<img src='{$recipeImgLink}/{$row['dir']}/{$row['heroImgLink']}' alt='{$row['title']}'>";
+                                    echo "</picture>";
+
+                                echo "</div>";
+
+                            echo "</div>";
+                        
+                        echo "</a>";
+                ?>
+                
+                    <!-- <a href="recipe.php">
+                        <div class="card">
                             <header>
                                 <h4>Crispy Chicken Sandwhiches</h4>
                             </header>
@@ -44,11 +83,15 @@
                                 <picture>
                                     <img src="assets/img/0101_FPF_Crispy-Wild-Alaskan-Pollock_97377_WEB_SQ_hi_res.jpg" alt="Hero image of recipe">
                                 </picture>
-                            </div>
-                        </div>
-                    </a>
+                            </div> 
+                        </div> 
+                    </a> -->
 
-                    <a href="recipe.php">
+                <?php
+                    } //for returned rows of recipe data
+                ?>
+
+                    <!-- <a href="recipe.php">
                         <div class="card">
                             <header>
                                 <h4>Mexican Spiced Barramundi</h4>
@@ -85,12 +128,13 @@
                                 </picture>
                             </div>
                         </div>
-                    </a>
+                    </a> -->
 
             </div>
             
         </ul>
     </main>
+    <script src="js/search.js"></script>
 <?php
     require_once('includes/_footer.php');
 ?>
