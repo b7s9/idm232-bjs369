@@ -4,7 +4,7 @@
 ?>
 
 <?php
-    $queryRecipe = "SELECT id,title,dir,subtitle,description,heroImgLink FROM recipe WHERE title LIKE '%Roasted%'";
+    $queryRecipe = "SELECT id,title,dir,subtitle,description FROM recipe WHERE title LIKE '%Roasted%'";
     $resultRecipes = mysqli_query($connection, $queryRecipe);
     if (!$resultRecipes) {
         die("Database query failed.");
@@ -23,7 +23,9 @@
 
         <div class="search powerbar">
             <div class="input">
-                <input type="text" name="search" placeholder="Search for a recipe...">
+                <form action="process.php" method="post" name="form" id="form">
+                    <input type="text" name="q" placeholder="Search for a recipe...">
+                </form>
             </div>
         </div>
 
@@ -63,8 +65,8 @@
                                 echo "<div class='img'>";
 
                                     echo "<picture>";
-                                        echo "<source srcset='{$recipeImgLink}/{$row['dir']}/{$row['heroImgLink']}'>";
-                                        echo "<img src='{$recipeImgLink}/{$row['dir']}/{$row['heroImgLink']}' alt='{$row['title']}'>";
+                                        echo "<source srcset='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg'>";
+                                        echo "<img src='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg' alt='{$row['title']}'>";
                                     echo "</picture>";
 
                                 echo "</div>";
@@ -72,63 +74,9 @@
                             echo "</div>";
                         
                         echo "</a>";
-                ?>
-                
-                    <!-- <a href="recipe.php">
-                        <div class="card">
-                            <header>
-                                <h4>Crispy Chicken Sandwhiches</h4>
-                            </header>
-                            <div class="img">
-                                <picture>
-                                    <img src="assets/img/0101_FPF_Crispy-Wild-Alaskan-Pollock_97377_WEB_SQ_hi_res.jpg" alt="Hero image of recipe">
-                                </picture>
-                            </div> 
-                        </div> 
-                    </a> -->
 
-                <?php
                     } //for returned rows of recipe data
-                ?>
-
-                    <!-- <a href="recipe.php">
-                        <div class="card">
-                            <header>
-                                <h4>Mexican Spiced Barramundi</h4>
-                            </header>
-                            <div class="img">
-                                <picture>
-                                    <img src="assets/img/0108_2PF_Barramundi_98380_SQ_hi_res.jpg" alt="Hero image of recipe">
-                                </picture>
-                            </div>
-                        </div>
-                    </a>
-        
-                    <a href="recipe.php">
-                        <div class="card">
-                            <header>
-                                <h4>Roasted Chicken Fall Vegetables</h4>
-                            </header>
-                            <div class="img">
-                                <picture>
-                                    <img src="assets/img/1120_FPP_Roasted-Chicken_92314_WEB_SQ_hi_res.jpg" alt="Hero image of recipe">
-                                </picture>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <a href="recipe.php">
-                        <div class="card">
-                            <header>
-                                <h4>Roasted Red Pepper Pasta</h4>
-                            </header>
-                            <div class="img">
-                                <picture>
-                                    <img src="assets/img/0108_2PV1_Roasted-Pepper-Pasta_97907_SQ_hi_res.jpg" alt="Hero image of recipe">
-                                </picture>
-                            </div>
-                        </div>
-                    </a> -->
+                ?>                    
 
             </div>
             

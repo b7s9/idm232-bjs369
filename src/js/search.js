@@ -1,3 +1,4 @@
+/*
 function debounce(func, wait, immediate) {
 	// 'private' variable for instance
 	// The returned function will be able to reference this due to closure.
@@ -42,8 +43,7 @@ function debounce(func, wait, immediate) {
 }
 
 const processQuery = (e)=>{
-	// console.log(e.target.value);
-	console.log(e);
+	// console.log(e);
     //make database call based on this value
 }
 
@@ -52,13 +52,60 @@ let debouncedQuery = debounce(processQuery, 100);
 const searchbar = document.querySelector('.search input');
 
 searchbar.addEventListener('keyup', debouncedQuery);
+*/
 
 // ---------
 
-const form = document.querySelector('form');
+const form = document.getElementById('form');
 
 const processForm = (e)=>{
-	//do form processing re: ajax
+	e.preventDefault();
+
+	// console.log('Form submitted');
+	// console.group('Event Info');
+	// console.log(e);
+	// console.groupEnd();
+
+	let httpRequest;
+
+	let data = new FormData(form);
+	// for (var pair of data.entries()) {
+	// 	console.log(pair[0]+ ', ' + pair[1]); 
+	// }
+	httpRequest = new XMLHttpRequest();
+
+	if (!httpRequest) {
+		window.alert('Cannot create an XMLHTTP instance');
+		return false;
+	}
+
+	httpRequest.onreadystatechange = alertContents;
+	httpRequest.open('POST', form.action, true);
+	httpRequest.send(data);
+
+	const alertContents = () => {
+		try {
+			if (httpRequest.readyState === XMLHttpRequest.DONE) {
+				if (httpRequest.status === 200) {
+					const response = JSON.parse(httpRequest.responseText);
+					console.log(response);
+					console.log(response.rows);
+					// console.log(response.rows[0].title);
+					// console.log(response.userQuery);
+				} else {
+					console.log('There was a problem with the request.');
+				}
+			}
+		} catch (event) {
+			console.log(`Caught Exception: ${event.description}`);
+		}
+	};
+
+	setTimeout(() => {
+		alertContents();	
+	}, 1000);
+
 }
 
 form.addEventListener('submit', processForm);
+
