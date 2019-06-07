@@ -116,8 +116,8 @@
                 <?php
                     mysqli_data_seek($resultRecipe, 0);
                     while($recipeRow = $resultRecipe->fetch_assoc()) {
-                        echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}'>";
-                        echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['heroImgLink']}' alt='{$recipeRow['title']}'>";
+                        echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/beauty_pic.jpg'>";
+                        echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/beauty_pic.jpg' alt='{$recipeRow['title']}'>";
                     }
                 ?>
             </picture>
@@ -185,8 +185,8 @@
                     <?php
                         mysqli_data_seek($resultRecipe, 0);
                         while($recipeRow = $resultRecipe->fetch_assoc()) {
-                            echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['ingredientImgLink']}'>";
-                            echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/{$recipeRow['ingredientImgLink']}' alt='Ingredients'>";
+                            echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/ingredients.png'>";
+                            echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/ingredients.png' alt='Ingredients'>";
                         }
                     ?>
                 </picture>
@@ -220,20 +220,26 @@
                     while($recipeRow = $resultRecipe->fetch_assoc()) {
                        
                         $instructionList = preg_split('/```/', $recipeRow['instructionList']);
+                        $step = 0;
+
                         foreach($instructionList as $instruction){
-                        ?>
-
-                <div class="step">
-                    <picture>
-                        <source srcset="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18429_WEB_retina_feature.jpg">
-                        <img src="assets/img/0101_2PV1_Broccoli-Bucatini-Fettucine_18429_WEB_retina_feature.jpg" alt="Step 1">
-                    </picture>
-
-                        <?php    
                             
                             $instructionNewlineList = explode('\r\n', $instruction);
 
                             foreach($instructionNewlineList as $instructionNewline){
+
+                                if($step == 0){
+                                    continue;
+                                }
+
+                                // open step
+                                echo "<div class='step'>";
+                                echo "<picture>";
+
+                                echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/step_0{$step}.jpg'>";
+                                echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/step_0{$step}.jpg' alt='Instruction Step Image'>";
+
+                                echo "</picture>";
                                 
                                 $instructionSplitList = explode(',,,', $instructionNewline);
 
@@ -247,13 +253,13 @@
                                 }else{
                                     echo "<p>" . trim($instructionSplitList[0]) . "</p>";                            
 
-                                }                           
+                                }
+                                
+                                echo "</div>"; 
+                                //close step                                
                             }
-                            ?>
-                </div> 
-                <!-- close step -->
 
-                            <?php
+                            $step++;
                         } //foreach step
                     } // this recipe row (sql)
                 ?>                             
