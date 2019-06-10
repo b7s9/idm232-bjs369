@@ -200,7 +200,7 @@ p {
 div.banner {
     box-sizing: border-box;
     box-shadow: #666 1px 1px 4px;
-    padding: 1rem;
+    padding: 0.125rem 1rem;
     position: fixed;    
     top: 0;
     width: 100vw;
@@ -223,7 +223,7 @@ div.banner {
     nav {
 
         ul {
-            margin-top: 2rem;
+            // margin-top: 2rem;
             text-align: center;
 
             li {
@@ -233,7 +233,7 @@ div.banner {
 
         
         @media screen and (min-width: $tablet-w-min){            
-            padding-top: 2rem;
+            padding: 1rem 0;
 
             ul {
                 display: flex;
