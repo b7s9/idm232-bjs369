@@ -89,9 +89,10 @@ const processForm = (e)=>{
 				if (httpRequest.status === 200) {
 					const response = JSON.parse(httpRequest.responseText);
 					console.log(response);
-					console.log(response.rows);
 					// console.log(response.rows[0].title);
 					// console.log(response.userQuery);
+
+					populateResults(response.rows);
 				} else {
 					console.log('There was a problem with the request.');
 				}
@@ -109,3 +110,45 @@ const processForm = (e)=>{
 
 form.addEventListener('submit', processForm);
 
+// ---------
+
+const resultsGrid = document.querySelector('.results .content');
+
+const populateResults = (rows) => {
+
+	resultsGrid.innerHTML = '';
+
+	for(let row of rows){
+		console.log(row);
+		let wrapper = document.createElement('a');
+		wrapper.href = 'recipe.php?' + row.id;
+
+		let card = document.createElement('div');
+		card.classList.add('card');
+		wrapper.appendChild(card);
+
+		let header = document.createElement('header');
+		let title = document.createElement('h4');
+		title.innerText = row.title;
+		header.appendChild(title);
+		card.appendChild(header);
+
+		let imgWrapper = document.createElement('div');
+		imgWrapper.classList.add('img');
+		let picture = document.createElement('picture');
+		let source = document.createElement('source');
+		source.setAttribute('srcset', `assets/img/${row.dir}/beauty_pic.jpg`);
+		let img = document.createElement('img');
+		img.setAttribute('src', `assets/img/${row.dir}/beauty_pic.jpg`);
+		img.setAttribute('alt', row.title);
+		picture.appendChild(source);
+		picture.appendChild(img);
+		imgWrapper.appendChild(picture);
+		card.appendChild(imgWrapper);
+
+		resultsGrid.appendChild(wrapper);
+		console.log(wrapper);
+	}
+
+	
+}
