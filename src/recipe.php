@@ -43,7 +43,7 @@
 <div class="banner">
         <div class="flex-wrapper">
         
-            <div class="logo">Füd</div>
+            <a href="search.php"><div class="logo">Füd</div></a>
 
             <div class="nav-toggle">
                 <div class="menu-ico ico" aria-hidden="true">
