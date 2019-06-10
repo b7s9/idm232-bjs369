@@ -8,12 +8,7 @@
     $resultRecipes = mysqli_query($connection, $queryRecipe);
     if (!$resultRecipes) {
         die("Database query failed.");
-    }
-    // while($row = $resultRecipes->fetch_assoc()) {
-    //     echo var_dump($row);
-    //     echo "<hr>";
-    // }
-        
+    }        
     
 ?>
 <main class="no-banner">
@@ -24,7 +19,7 @@
         <div class="search powerbar">
             <div class="input">
                 <form action="process.php" method="post" name="form" id="form">
-                    <input type="text" name="q" placeholder="Search for a recipe...">
+                    <input type="text" name="q" pattern="([A-Za-z])+" placeholder="Search for a recipe...">
                 </form>
             </div>
         </div>
