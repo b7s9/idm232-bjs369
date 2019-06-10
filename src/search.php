@@ -4,11 +4,11 @@
 ?>
 
 <?php
-    $queryRecipe = "SELECT id,title,dir,subtitle,description FROM recipe WHERE title LIKE '%Roasted%'";
-    $resultRecipes = mysqli_query($connection, $queryRecipe);
-    if (!$resultRecipes) {
-        die("Database query failed.");
-    }        
+    // $queryRecipe = "SELECT id,title,dir,subtitle,description FROM recipe WHERE title LIKE '%Roasted%'";
+    // $resultRecipes = mysqli_query($connection, $queryRecipe);
+    // if (!$resultRecipes) {
+    //     die("Database query failed.");
+    // }        
     
 ?>
 <main class="no-banner">
@@ -48,29 +48,29 @@
             <ul class="content two-col">
 
                 <?php
-                    while($row = $resultRecipes->fetch_assoc()) {
-                        echo "<a href='recipe.php?{$row['id']}'>";
+                    // while($row = $resultRecipes->fetch_assoc()) {
+                    //     echo "<a href='recipe.php?{$row['id']}'>";
                         
-                            echo "<div class='card'>";
+                    //         echo "<div class='card'>";
 
-                                echo "<header>";
-                                echo "<h4>{$row['title']}</h4>";
-                                echo "</header>";
+                    //             echo "<header>";
+                    //             echo "<h4>{$row['title']}</h4>";
+                    //             echo "</header>";
 
-                                echo "<div class='img'>";
+                    //             echo "<div class='img'>";
 
-                                    echo "<picture>";
-                                        echo "<source srcset='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg'>";
-                                        echo "<img src='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg' alt='{$row['title']}'>";
-                                    echo "</picture>";
+                    //                 echo "<picture>";
+                    //                     echo "<source srcset='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg'>";
+                    //                     echo "<img src='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg' alt='{$row['title']}'>";
+                    //                 echo "</picture>";
 
-                                echo "</div>";
+                    //             echo "</div>";
 
-                            echo "</div>";
+                    //         echo "</div>";
                         
-                        echo "</a>";
+                    //     echo "</a>";
 
-                    } //for returned rows of recipe data
+                    // } //for returned rows of recipe data
                 ?>                    
 
             </div>
