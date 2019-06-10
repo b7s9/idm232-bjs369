@@ -55,6 +55,13 @@ searchbar.addEventListener('keyup', debouncedQuery);
 */
 
 // ---------
+const searchbar = document.querySelector('.search input');
+
+searchbar.oninvalid = function(event) {
+    event.target.setCustomValidity('Search queries can only be A-Z');
+}
+
+// ---------
 
 const form = document.getElementById('form');
 
@@ -88,7 +95,7 @@ const processForm = (e)=>{
 			if (httpRequest.readyState === XMLHttpRequest.DONE) {
 				if (httpRequest.status === 200) {
 					const response = JSON.parse(httpRequest.responseText);
-					console.log(response);
+					// console.log(response);
 					// console.log(response.rows[0].title);
 					// console.log(response.userQuery);
 
@@ -112,14 +119,21 @@ form.addEventListener('submit', processForm);
 
 // ---------
 
+// const countDisplay = document.querySelector('.count');
+const countDisplayInstance = document.querySelector('.count .instance');
+const countDisplayTotal = document.querySelector('.count .total');
+
 const resultsGrid = document.querySelector('.results .content');
 
 const populateResults = (rows) => {
 
 	resultsGrid.innerHTML = '';
 
+	countDisplayInstance.textContent = rows.length;
+	countDisplayTotal.textContent = rows.length;
+
 	for(let row of rows){
-		console.log(row);
+		// console.log(row);
 		let wrapper = document.createElement('a');
 		wrapper.href = 'recipe.php?' + row.id;
 
@@ -147,7 +161,7 @@ const populateResults = (rows) => {
 		card.appendChild(imgWrapper);
 
 		resultsGrid.appendChild(wrapper);
-		console.log(wrapper);
+		// console.log(wrapper);
 	}
 
 	

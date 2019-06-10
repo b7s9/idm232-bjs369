@@ -22,6 +22,9 @@
                     <input type="text" name="q" pattern="([A-Za-z])+" placeholder="Search for a recipe...">
                 </form>
             </div>
+            <div class="count">
+                <span>Showing <span class="instance">X</span> of <span class="total">Y</span> results</span>
+            </div>
         </div>
 
         <div class="filters">
