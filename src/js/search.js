@@ -137,9 +137,9 @@ const populateResults = (rows) => {
 		imgWrapper.classList.add('img');
 		let picture = document.createElement('picture');
 		let source = document.createElement('source');
-		source.setAttribute('srcset', `assets/img/${row.dir}/beauty_pic.jpg`);
+		source.setAttribute('srcset', `assets/img/${row.dir}/beauty_pic_500.jpg`);
 		let img = document.createElement('img');
-		img.setAttribute('src', `assets/img/${row.dir}/beauty_pic.jpg`);
+		img.setAttribute('src', `assets/img/${row.dir}/beauty_pic_500.jpg`);
 		img.setAttribute('alt', row.title);
 		picture.appendChild(source);
 		picture.appendChild(img);
