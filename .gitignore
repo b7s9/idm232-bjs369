@@ -54,6 +54,7 @@ build
 dist
 node_modules
 assets/
+_secret.php
 
 # Logs
 logs
@@ -116,3 +117,4 @@ typings/
 
 # next.js build output
 .next
+

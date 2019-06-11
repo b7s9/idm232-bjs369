@@ -1,4 +1,6 @@
 <?php
+  require('_secret.php');
+
   $checkHost = $_SERVER['HTTP_HOST'];
   if($checkHost == 'localhost:8080'){
     $dbhost = "localhost";
@@ -6,10 +8,10 @@
     $dbpass = "";
     $dbname = "idm232";
   }else{
-    $dbhost = "localhost";
-    $dbuser = "***REMOVED***";
-    $dbpass = "***REMOVED***";
-    $dbname = "***REMOVED***";
+    $dbhost = $dbhostRemote;
+    $dbuser = $dbuserRemote;
+    $dbpass = $dbpassRemote;
+    $dbname = $dbnameRemote;
   }
   
   
