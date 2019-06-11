@@ -60,9 +60,14 @@ gulp.task('watch', () => {
 
 gulp.task('default', ['watch']);
 
-gulp.task('prod', ()=> {
+gulp.task('prod', () => {
 	return gulp.src('./build/**/*')
 		.pipe(gulp.dest('/Users/finch/.bitnami/stackman/machines/xampp/volumes/root/htdocs/dir/idm232-bjs369-build'));
+});
+
+gulp.task('prod2', () => {
+	return gulp.src('./build/**/*')
+		.pipe(gulp.dest('/Applications/MAMP/htdocs/idm232-bjs369-build'));
 });
 
 // --------------------------------------------------------

@@ -7,6 +7,11 @@
     $dbuser = "root";
     $dbpass = "";
     $dbname = "idm232";
+  }else if($checkHost == 'localhost:8888'){
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "root";
+    $dbname = "idm232";
   }else{
     $dbhost = $dbhostRemote;
     $dbuser = $dbuserRemote;
