@@ -19,7 +19,7 @@
         <div class="search powerbar">
             <div class="input">
                 <form action="process.php" method="post" name="form" id="form">
-                    <input type="text" name="q" pattern="([A-Za-z])+" placeholder="Search for a recipe...">
+                    <input type="text" name="q" pattern="([A-Za-z])+" placeholder="Search for a recipe..." autocomplete="none">
                 </form>
             </div>
             <div class="count">
@@ -31,15 +31,36 @@
             <header>
                 <h3>Available Filters</h3>
                 <hr>
-            </header>
+            </header>            
 
-            <ul class="options two-col">
-                <li><a href="#">Spicy</a></li>
+            <fieldset class="options two-col">
+
+            <?php 
+                $tags = ['beef', 'poultry', 'pork', 'seafood', 'vegetarian'];
+
+                foreach($tags as $tag){
+                    echo "<div data-filter='{$tag}'>";
+                    echo "<input type='checkbox' name='{$tag}' value='{$tag}' >";
+                    echo "<label for='$tag'>" . ucfirst($tag) . "</label>";
+                    echo "</div>";
+                }
+            ?>   
+                         
+            </fieldset>
+
+            <!-- <ul class="options two-col">
+                <!~~ <li><a href="#">Spicy</a></li>
                 <li><a href="#">Vegetarian</a></li>
                 <li><a href="#">Carnivorous</a></li>
-                <li><a href="#">Ben's Picks</a></li>
+                <li><a href="#">Ben's Picks</a></li> ~~>                
+                <li><input type="checkbox" name="beef" id=""><label for="beef">Beef</label></li>
+                <li><input type="checkbox" name="poultry" id=""><label for="poultry">Poultry</label></li>
+                <li><input type="checkbox" name="pork" id=""><label for="pork">Pork</label></li>
+                <li><input type="checkbox" name="fish" id=""><label for="fish">Fish</label></li>
+                <li><input type="checkbox" name="seafood" id=""><label for="seafood">Seafood</label></li>
+                <li><input type="checkbox" name="vegetarian" id=""><label for="vegetarian">Vegetarian</label></li>
             </ul>
-            
+             -->
         </div>
 
         <div class="results" id="results">

@@ -63,6 +63,26 @@ searchbar.oninvalid = function(event) {
 
 // ---------
 
+// get checkbox
+const filters = document.querySelectorAll('.filters fieldset input');
+for(let filter of filters){
+	console.log(filter);
+
+	filter.addEventListener('change', (event) => {
+		if (event.target.checked) {
+			console.log('checked');
+		} else {
+			console.log('not checked');
+		}
+	});
+}
+
+
+
+
+// ---------
+
+
 const form = document.getElementById('form');
 
 const processForm = (e)=>{
