@@ -69,6 +69,16 @@ a {
             width: 50%;            
         }
     }
+
+    .count {
+        padding: 1rem;
+        font-size: 0.9rem;
+        font-variant-caps: all-small-caps;
+    }
+}
+
+.filters fieldset {
+    border: none;
 }
 
 div.banner {
