@@ -1,98 +1,44 @@
-/*
-function debounce(func, wait, immediate) {
-	// 'private' variable for instance
-	// The returned function will be able to reference this due to closure.
-	// Each call to the returned function will share this common timer.
-	var timeout;
-
-	// Calling debounce returns a new anonymous function
-	return function() {
-		// reference the context and args for the setTimeout function
-		var context = this,
-		args = arguments;
-
-		// Should the function be called now? If immediate is true
-		//   and not already in a timeout then the answer is: Yes
-		var callNow = immediate && !timeout;
-
-		// This is the basic debounce behaviour where you can call this 
-		//   function several times, but it will only execute once 
-		//   [before or after imposing a delay]. 
-		//   Each time the returned function is called, the timer starts over.
-		clearTimeout(timeout);
-
-		// Set the new timeout
-		timeout = setTimeout(function() {
-
-		// Inside the timeout function, clear the timeout variable
-		// which will let the next execution run when in 'immediate' mode
-		timeout = null;
-
-		// Check if the function already ran with the immediate flag
-		if (!immediate) {
-			// Call the original function with apply
-			// apply lets you define the 'this' object as well as the arguments 
-			//    (both captured before setTimeout)
-			func.apply(context, args);
-		}
-		}, wait);
-
-		// Immediate mode and no wait timer? Execute the function..
-		if (callNow) func.apply(context, args);
-	};
-}
-
-const processQuery = (e)=>{
-	// console.log(e);
-    //make database call based on this value
-}
-
-let debouncedQuery = debounce(processQuery, 100);
-
+// --------------------------------------------------------
+// GLOBAL VARS
+// --------------------------------------------------------
 const searchbar = document.querySelector('.search input');
-
-searchbar.addEventListener('keyup', debouncedQuery);
-*/
-
-// ---------
-const searchbar = document.querySelector('.search input');
-
-searchbar.oninvalid = function(event) {
-    event.target.setCustomValidity('Search queries can only be A-Z');
-}
-
-// ---------
-
-// get checkbox
 const filters = document.querySelectorAll('.filters fieldset input');
-for(let filter of filters){
-	console.log(filter);
+const form = document.getElementById('form');
+const countDisplayText = document.querySelector('.count span');
+const resultsGrid = document.querySelector('.results .content');
+
+let resultsLocal = {};
+
+const activeFilters = [];
+
+for (let filter of filters) {
+
+	if (filter.checked) {
+		activeFilters.push(filter.value);
+	}
 
 	filter.addEventListener('change', (event) => {
 		if (event.target.checked) {
-			console.log('checked');
+			// console.log('checked');
+			activeFilters.push(filter.value);
 		} else {
-			console.log('not checked');
+			// console.log('not checked');
+			let index = activeFilters.indexOf(filter.value);
+			activeFilters.splice(index, 1);
 		}
+		Object.keys(resultsLocal).length !== 0 && populateResults(resultsLocal.rows);
+
 	});
 }
 
+// --------------------------------------------------------
+// GLOBAL FUNCTIONS
+// --------------------------------------------------------
 
-
-
-// ---------
-
-
-const form = document.getElementById('form');
-
-const processForm = (e)=>{
-	e.preventDefault();
-
-	// console.log('Form submitted');
-	// console.group('Event Info');
-	// console.log(e);
-	// console.groupEnd();
-
+/**
+ * Creates an ajax obj with searchbar input
+ */
+const createHttpRequest = () => {
 	let httpRequest;
 
 	let data = new FormData(form);
@@ -106,54 +52,81 @@ const processForm = (e)=>{
 		return false;
 	}
 
-	httpRequest.onreadystatechange = alertContents;
+	httpRequest.onreadystatechange = function () {
+		getResponse(httpRequest);
+	};
 	httpRequest.open('POST', form.action, true);
 	httpRequest.send(data);
 
-	const alertContents = () => {
-		try {
-			if (httpRequest.readyState === XMLHttpRequest.DONE) {
-				if (httpRequest.status === 200) {
-					const response = JSON.parse(httpRequest.responseText);
-					// console.log(response);
-					// console.log(response.rows[0].title);
-					// console.log(response.userQuery);
+	return httpRequest;
+};
 
-					populateResults(response.rows);
-				} else {
-					console.log('There was a problem with the request.');
-				}
+/**
+ * Collects response from passed ajax obj
+ * Calls populateResults() with response rows
+ * @param {httpRequestObject} httpRequest 
+ */
+const getResponse = (httpRequest) => {
+	try {
+		if (httpRequest.readyState === XMLHttpRequest.DONE) {
+			if (httpRequest.status === 200) {
+				const response = JSON.parse(httpRequest.responseText);
+				console.log(response);
+				resultsLocal = response;
+				populateResults(resultsLocal.rows);
+			} else {
+				console.log('There was a problem with the request.');
 			}
-		} catch (event) {
-			console.log(`Caught Exception: ${event.description}`);
 		}
-	};
+	} catch (event) {
+		console.log(`Caught Exception: ${event.description}`);
+	}
+};
 
-	setTimeout(() => {
-		alertContents();	
-	}, 1000);
+/**
+ * Catches user hitting enter on searchbar
+ * creates ajax
+ * @param {event} e 
+ */
+const processForm = (e) => {
+	e.preventDefault();
 
-}
+	// console.group('Event Info');
+	// console.log(e);
+	// console.groupEnd();
 
-form.addEventListener('submit', processForm);
+	createHttpRequest();
+};
 
-// ---------
-
-// const countDisplay = document.querySelector('.count');
-const countDisplayInstance = document.querySelector('.count .instance');
-const countDisplayTotal = document.querySelector('.count .total');
-
-const resultsGrid = document.querySelector('.results .content');
-
+/**
+ * Displays 
+ * @param {Array} rows 
+ * @return {Number} visible rows
+ */
 const populateResults = (rows) => {
 
 	resultsGrid.innerHTML = '';
 
-	countDisplayInstance.textContent = rows.length;
-	countDisplayTotal.textContent = rows.length;
-
-	for(let row of rows){
+	let total = 0;
+	for (let row of rows) {
 		// console.log(row);
+		if (activeFilters.indexOf(row.meat) == -1) {
+			continue;
+		} else {
+			total++;
+		}
+
+		/*
+		HTML STRUCTURE
+		a.wrapper
+			div.card
+				header
+				div.img
+					picture
+						source
+						img
+		*/
+
 		let wrapper = document.createElement('a');
 		wrapper.href = 'recipe.php?' + row.id;
 
@@ -184,5 +157,18 @@ const populateResults = (rows) => {
 		// console.log(wrapper);
 	}
 
-	
-}
+	countDisplayText.textContent = 'Showing ' + total + ' of ' + rows.length + ' results';
+
+	return total;
+
+};
+
+// --------------------------------------------------------
+// EVENT LISTENERS
+// --------------------------------------------------------
+
+searchbar.oninvalid = function (event) {
+	event.target.setCustomValidity('Search queries can only be A-Z');
+};
+
+form.addEventListener('submit', processForm);

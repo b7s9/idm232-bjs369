@@ -9,10 +9,11 @@ if (isset($_POST["q"])) {
     //should probably do something here
 }
 
-$queryRecipe = "SELECT title,subtitle,dir,id FROM recipe 
+$queryRecipe = "SELECT title,subtitle,dir,id,meat FROM recipe 
     WHERE title LIKE '%{$userQuery}%' 
     OR subtitle LIKE '%{$userQuery}%'
     OR description LIKE '%{$userQuery}%'
+    OR ingredientList LIKE '%{$userQuery}%'
     ";
 
 $resultRecipe = mysqli_query($connection, $queryRecipe);
@@ -30,13 +31,15 @@ while($row = $resultRecipe->fetch_assoc()) {
         "title" => $row['title'],
         "subtitle" => $row['subtitle'],
         "dir" => $row['dir'],
-        "id" => $row['id']
+        "id" => $row['id'],
+        "meat" => $row['meat']
     ];
     $i++;
 }
 
 array_push($res, ["userQuery" => $userQuery]);
 
+// for testing
 // $res = [
 //     "rows" => [
 //         [

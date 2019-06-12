@@ -23,25 +23,26 @@
                 </form>
             </div>
             <div class="count">
-                <span>Showing <span class="instance">X</span> of <span class="total">Y</span> results</span>
+                <!-- <span>Showing <span class="set">0</span> results</span> -->
+                <span></span>
             </div>
         </div>
 
         <div class="filters">
             <header>
-                <h3>Available Filters</h3>
+                <h3>Filter Results</h3>
                 <hr>
             </header>            
 
             <fieldset class="options two-col">
 
             <?php 
-                $tags = ['beef', 'poultry', 'pork', 'seafood', 'vegetarian'];
+                $tags = ['beef', 'poultry', 'pork', 'fish', 'veg'];
 
                 foreach($tags as $tag){
                     echo "<div data-filter='{$tag}'>";
-                    echo "<input type='checkbox' name='{$tag}' value='{$tag}' >";
-                    echo "<label for='$tag'>" . ucfirst($tag) . "</label>";
+                    echo "<input type='checkbox' name='{$tag}' id='filter_{$tag}' value='{$tag}' class='css-checkbox' checked>";
+                    echo "<label for='filter_{$tag}' class='css-label'>" . ($tag == 'veg' ? 'Vegetarian' : ucfirst($tag) ) . "</label>";
                     echo "</div>";
                 }
             ?>   
