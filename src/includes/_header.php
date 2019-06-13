@@ -2,9 +2,9 @@
 ini_set('default_charset','utf-8');
 header('Content-type: text/html; charset=utf-8');
 
-$recipeImgLink = 'assets/img';
-$howToImgLink = 'assets/img/howTo';
-$kitchenToolImgLink = 'assets/img/kitchenTool';
+$recipeImgLink = 'assets/recipe';
+$howToImgLink = 'assets/howTo';
+$kitchenToolImgLink = 'assets/kitchenTool';
 ?>
 <!DOCTYPE html>
 <html lang="en">

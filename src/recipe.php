@@ -14,28 +14,12 @@
     }
     
     while($recipeRow = $resultRecipe->fetch_assoc()) {
-        
-        // get associated kitchen tool
-        // echo $recipeRow['kitchenToolid'];
-        // echo "<hr>";
 
         $queryKitchenTool = "SELECT * FROM kitchenTool WHERE id={$recipeRow['kitchenToolid']}";
         $resultKitchenTool = mysqli_query($connection, $queryKitchenTool);        
-        // while($kitchenRow = $resultKitchenTool->fetch_assoc()) {
-        //     var_dump($kitchenRow);
-        //     echo "<hr>";
-        // }
-
-        // get associated howTo
-        // echo $recipeRow['howToid'];
-        // echo "<hr>";
 
         $queryHowTo = "SELECT * FROM kitchenTool WHERE id={$recipeRow['howToid']}";
         $resultHowTo = mysqli_query($connection, $queryHowTo);
-        // while($howRow = $resultHowTo->fetch_assoc()) {
-        //     var_dump($howRow);
-        //     echo "<hr>";
-        // }
         
     }
     
@@ -151,17 +135,17 @@
                 
         <div class="kitchen-tool">
             <header>
-                <h3>Kitchen Tool</h3>
+                <h3>Featured Instrument</h3>
                 <hr>                
             </header>
 
             <div class="content">
                 <picture>
-                    <source srcset="<?php echo "{$howToImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>">
-                    <img src="<?php echo "{$howToImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>" alt="Kitchen Tool">
+                    <source srcset="<?php echo "{$kitchenToolImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>">
+                    <img src="<?php echo "{$kitchenToolImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>" alt="Kitchen Tool">
                 </picture>
                 <figcaption>
-                        <a href="#"><?php echo $kitchenRow['title']; ?></a>
+                        <a href="<?php echo $kitchenRow['ctaLink'];?>" target="_blank"><?php echo $kitchenRow['title']; ?></a>
                 </figcaption>
 
                 <p><?php echo $kitchenRow['description']; ?></p>
@@ -272,5 +256,7 @@
     </main>
     <script src="js/navbar.js"></script>
 <?php
+    mysqli_free_result($resultRecipe);
+    mysqli_close($connection);
     require_once('includes/_footer.php');
 ?>
