@@ -144,9 +144,9 @@ const populateResults = (rows) => {
 		imgWrapper.classList.add('img');
 		let picture = document.createElement('picture');
 		let source = document.createElement('source');
-		source.setAttribute('srcset', `assets/img/${row.dir}/beauty_pic_500.jpg`);
+		source.setAttribute('srcset', `assets/recipe/${row.dir}/beauty_pic_500.jpg`);
 		let img = document.createElement('img');
-		img.setAttribute('src', `assets/img/${row.dir}/beauty_pic_500.jpg`);
+		img.setAttribute('src', `assets/recipe/${row.dir}/beauty_pic_500.jpg`);
 		img.setAttribute('alt', row.title);
 		picture.appendChild(source);
 		picture.appendChild(img);
@@ -167,8 +167,12 @@ const populateResults = (rows) => {
 // EVENT LISTENERS
 // --------------------------------------------------------
 
-searchbar.oninvalid = function (event) {
-	event.target.setCustomValidity('Search queries can only be A-Z');
+searchbar.oninvalid = function (e) {
+	e.target.setCustomValidity('Search queries can only be A-Z');
+};
+
+searchbar.oninput = function (e) {
+	e.target.setCustomValidity('');
 };
 
 form.addEventListener('submit', processForm);
