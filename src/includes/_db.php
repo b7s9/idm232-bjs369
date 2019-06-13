@@ -29,6 +29,6 @@
       );
   }
 
-  mysqli_query($connection, "SET NAMES 'utf8'");
+  mysqli_set_charset($connection, "utf8");
 
 ?>
