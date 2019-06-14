@@ -14,6 +14,7 @@ $queryRecipe = "SELECT title,subtitle,dir,id,meat FROM recipe
     OR subtitle LIKE '%{$userQuery}%'
     OR description LIKE '%{$userQuery}%'
     OR ingredientList LIKE '%{$userQuery}%'
+    ORDER BY title
     ";
 
 $resultRecipe = mysqli_query($connection, $queryRecipe);

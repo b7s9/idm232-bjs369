@@ -18,38 +18,45 @@
         $queryKitchenTool = "SELECT * FROM kitchenTool WHERE id={$recipeRow['kitchenToolid']}";
         $resultKitchenTool = mysqli_query($connection, $queryKitchenTool);        
 
-        $queryHowTo = "SELECT * FROM kitchenTool WHERE id={$recipeRow['howToid']}";
+        $queryHowTo = "SELECT * FROM howTo WHERE id={$recipeRow['howToid']}";
         $resultHowTo = mysqli_query($connection, $queryHowTo);
         
     }
     
 ?>
-<div class="banner">
-        <div class="flex-wrapper">
-        
-            <a href="search.php"><div class="logo">Füd</div></a>
+    <div class="banner">
+        <div class="flex-wrapper"> 
 
-            <div class="nav-toggle">
-                <div class="menu-ico ico" aria-hidden="true">
-                    <svg width="32px" height="27px" viewBox="0 0 32 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <defs></defs>
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
-                            <g id="home" transform="translate(-277.000000, -13.000000)" stroke="#093354" stroke-width="3">
-                                <g id="navbar" transform="translate(0.000000, -1.000000)">
-                                    <g id="menu-icon" transform="translate(272.000000, 6.000000)">
-                                        <path d="M7,9.5 L35,9.5" id="Line"></path>
-                                        <path d="M7,21.5 L35,21.5" id="Line-Copy"></path>
-                                        <path d="M7,33.5 L35,33.5" id="Line-Copy-2"></path>
-                                    </g>
+            <nav>                
+                <a href="search.php" class="logo">Füd</a>
+                <ul class="desktop-nav">
+                    <li><a href="#desc">Description</a></li>
+                    <li><a href="#ingredients">Ingredients</a></li>
+                    <li><a href="#steps">Steps</a></li>
+                    <li><a href="#how-to">How To</a></li>
+                    <li><a href="search.php">Find a Recipe</a></li>
+                    <!-- <li><a href="search.php">I'm Feeling Lucky</a></li> -->
+                </ul>
+            </nav>
+
+            <div class="nav-toggle menu-ico ico" aria-hidden="true">
+                <svg width="32px" height="27px" viewBox="0 0 32 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs></defs>
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+                        <g id="home" transform="translate(-277.000000, -13.000000)" stroke="#093354" stroke-width="3">
+                            <g id="navbar" transform="translate(0.000000, -1.000000)">
+                                <g id="menu-icon" transform="translate(272.000000, 6.000000)">
+                                    <path d="M7,9.5 L35,9.5" id="Line"></path>
+                                    <path d="M7,21.5 L35,21.5" id="Line-Copy"></path>
+                                    <path d="M7,33.5 L35,33.5" id="Line-Copy-2"></path>
                                 </g>
                             </g>
                         </g>
-                    </svg>
-                </div>
-                <button class="nav-toggle">Go To</button>           
+                    </g>
+                </svg>
             </div>
 
-            <div class="search">
+            <!-- <div class="search">
                 <div class="search-ico ico" aria-hidden="true">
                     <svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs></defs>
@@ -60,28 +67,29 @@
                         </g>
                     </svg>
                 </div>
-                <!-- <label for="search">Search</label> -->
+                <!~~ <label for="search">Search</label> ~~>
                 <div class="input">
                     <input type="text" name="search" id="search" placeholder="Search for a recipe...">
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
-        <nav class="visually-hidden">                
-            <!-- <div class="menu"> -->
-                <ul>
-                    <li><a href="#desc">Description</a></li>
-                    <li><a href="#ingredients">Ingredients</a></li>
-                    <li><a href="#steps">Steps</a></li>
-                    <li><a href="#how-to">How To</a></li>
-                    <li><a href="search.php">Find a Recipe</a></li>
-                    <li><a href="search.php#results">I'm Feeling Lucky</a></li>
-                </ul>
-            <!-- </div> -->
-        </nav>
-
+        <ul class="mobile-nav visually-hidden">
+            <li><a href="#desc">Description</a></li>
+            <li><a href="#ingredients">Ingredients</a></li>
+            <li><a href="#steps">Steps</a></li>
+            <li><a href="#how-to">How To</a></li>
+            <li><a href="search.php">Find a Recipe</a></li>
+            <!-- <li><a href="search.php">I'm Feeling Lucky</a></li> -->
+        </ul>
+        
     </div>
+
+    <div class="banner-ghost"></div>
+
+
+    <div class="content-wrapper">
 
     <main>
         <header class="intro">
@@ -135,15 +143,17 @@
                 
         <div class="kitchen-tool">
             <header>
-                <h3>Featured Instrument</h3>
+                <h3>Featured Tool</h3>
                 <hr>                
             </header>
 
             <div class="content">
-                <picture>
-                    <source srcset="<?php echo "{$kitchenToolImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>">
-                    <img src="<?php echo "{$kitchenToolImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>" alt="Kitchen Tool">
-                </picture>
+                <a href="<?php echo $kitchenRow['ctaLink'];?>" target="_blank">           
+                    <picture>
+                        <source srcset="<?php echo "{$kitchenToolImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>">
+                        <img src="<?php echo "{$kitchenToolImgLink}/{$kitchenRow['id']}/{$kitchenRow['imgLink1']}"; ?>" alt="Kitchen Tool">
+                    </picture>
+                </a>
                 <figcaption>
                         <a href="<?php echo $kitchenRow['ctaLink'];?>" target="_blank"><?php echo $kitchenRow['title']; ?></a>
                 </figcaption>
@@ -164,7 +174,7 @@
                 <hr>
             </header>
 
-            <div class="content">                
+            <div class="content">              
                 <picture>
                     <?php
                         mysqli_data_seek($resultRecipe, 0);
@@ -181,7 +191,7 @@
                         while($recipeRow = $resultRecipe->fetch_assoc()) {
                             $ingredientList = preg_split('/\R/', $recipeRow['ingredientList']);
                             foreach($ingredientList as $ingredient){
-                                echo "<li>{$ingredient}</li>";
+                                if(strlen($ingredient) > 1 ) echo "<li>{$ingredient}</li>";                                
                             }
                         }
                     ?>
@@ -189,6 +199,41 @@
             </div>
 
         </div>
+
+        <?php
+            mysqli_data_seek($resultRecipe, 0);
+            while($recipeRow = $resultRecipe->fetch_assoc() ) {
+                if( $recipeRow['howToid'] != 0 ){
+
+                    mysqli_data_seek($resultHowTo, 0);
+                    while($howToRow = $resultHowTo->fetch_assoc() ){
+
+        ?>
+                
+        <div class="how-to" id="how-to">
+            <header>
+                <h3>How To...</h3>
+                <hr>                
+            </header>
+
+            <div class="content">
+            <header>
+                    <h4><?php echo $howToRow['title'];?></h4>
+                </header>
+                <picture>
+                    <source srcset="<?php echo "{$howToImgLink}/{$howToRow['id']}/{$howToRow['marqueeImgLink']}"; ?>">
+                    <img src="<?php echo "{$howToImgLink}/{$howToRow['id']}/{$howToRow['marqueeImgLink']}"; ?>" alt="How To">
+                </picture>
+
+                <p><?php echo $howToRow['description']; ?></p>
+            </div>
+        </div>
+
+        <?php
+                    } // while howToRow
+                } // if kitchenTool
+            } // while recipeRow
+        ?>
 
         <div class="steps" id="steps">
             
@@ -216,23 +261,28 @@
                                     continue;
                                 }
 
+                                $instructionSplitList = explode(',,,', $instructionNewline);
+
                                 // open step
                                 echo "<div class='step'>";
-                                echo "<picture>";
+                                if( count($instructionSplitList) > 1){
+                                    echo "<picture class='split'>";                                    
+                                }else {
+                                    echo "<picture>";
+                                }
 
                                 echo "<source srcset='{$recipeImgLink}/{$recipeRow['dir']}/step_0{$step}.jpg'>";
                                 echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/step_0{$step}.jpg' alt='Instruction Step Image'>";
 
                                 echo "</picture>";
                                 
-                                $instructionSplitList = explode(',,,', $instructionNewline);
 
                                 if( count($instructionSplitList) > 1){
                                     echo "<header>";
                                     echo "<h4>" . trim($instructionSplitList[0]) . "</h4>";
                                     echo "</header>";
 
-                                    echo "<p>" . trim($instructionSplitList[1]) . "</p>";                            
+                                    echo "<p class='split'>" . trim($instructionSplitList[1]) . "</p>";                            
                                     
                                 }else{
                                     echo "<p>" . trim($instructionSplitList[0]) . "</p>";                            
@@ -240,7 +290,9 @@
                                 }
                                 
                                 echo "</div>"; 
-                                //close step                                
+                                //close step            
+                                
+                                echo "<hr class='step'>";
                             }
 
                             $step++;
@@ -254,6 +306,7 @@
         <!-- close instructions -->
 
     </main>
+    </div>
     <script src="js/navbar.js"></script>
 <?php
     mysqli_free_result($resultRecipe);

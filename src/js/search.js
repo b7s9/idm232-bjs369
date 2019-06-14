@@ -3,7 +3,8 @@
 // --------------------------------------------------------
 const searchbar = document.querySelector('.search input');
 const filters = document.querySelectorAll('.filters fieldset input');
-const form = document.getElementById('form');
+const textForm = document.querySelector('.input .textForm');
+const btnForm = document.querySelector('.input .btnForm');
 const countDisplayText = document.querySelector('.count span');
 const resultsGrid = document.querySelector('.results .content');
 
@@ -38,7 +39,7 @@ for (let filter of filters) {
 /**
  * Creates an ajax obj with searchbar input
  */
-const createHttpRequest = () => {
+const createHttpRequest = (form) => {
 	let httpRequest;
 
 	let data = new FormData(form);
@@ -91,11 +92,11 @@ const getResponse = (httpRequest) => {
 const processForm = (e) => {
 	e.preventDefault();
 
-	// console.group('Event Info');
-	// console.log(e);
-	// console.groupEnd();
+	console.group('Event Info');
+	console.log(e);
+	console.groupEnd();
 
-	createHttpRequest();
+	createHttpRequest(e.target);
 };
 
 /**
@@ -175,4 +176,10 @@ searchbar.oninput = function (e) {
 	e.target.setCustomValidity('');
 };
 
-form.addEventListener('submit', processForm);
+textForm.addEventListener('submit', processForm);
+
+btnForm.addEventListener('submit', processForm);
+
+// allRecipesBtn.addEventListener('click', function (e) {
+// 	console.log(e);
+// });

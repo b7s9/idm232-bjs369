@@ -88,10 +88,10 @@ a {
 
 div.banner {
 
-    .ico {
+    .search .ico {
         display: block;
 
-        @media screen and (min-width: $tablet-w-min) {
+        @media screen and (min-width: $laptop-w-min) {
             display: none;
         }
     }
@@ -127,7 +127,7 @@ div.banner {
 
             display: none;
 
-            @media screen and (min-width: $tablet-w-min) {
+            @media screen and (min-width: $laptop-w-min) {
                 display: block;
             }
         }
@@ -149,7 +149,6 @@ div.banner {
     position: absolute;
     visibility: hidden;
     width: 0;
-
 }
 
 .two-col {
@@ -186,64 +185,6 @@ input[type=checkbox] {
     visibility: hidden;
 }
 
-
-// .checkmark {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     height: 25px;
-//     width: 25px;
-//     background-color: #eee;
-// }
-
-// .checkbox-container {
-//     display: block;
-//     position: relative;
-//     padding-left: 35px;
-//     margin-bottom: 12px;
-//     cursor: pointer;
-//     font-size: 22px;
-//     -webkit-user-select: none;
-//     -moz-user-select: none;
-//     -ms-user-select: none;
-//     user-select: none;
-// }
-
-// /* On mouse-over, add a grey background color */
-// .checkbox-container:hover input~.checkmark {
-//     background-color: #ccc;
-// }
-
-// /* When the checkbox is checked, add a blue background */
-// .checkbox-container input:checked~.checkmark {
-//     background-color: #2196F3;
-// }
-
-// /* Create the checkmark/indicator (hidden when not checked) */
-// .checkbox-container:after {
-//     content: "";
-//     position: absolute;
-//     display: none;
-// }
-
-// /* Show the checkmark when checked */
-// .checkbox-container input:checked~.checkmark:after {
-//     display: block;
-// }
-
-// /* Style the checkmark/indicator */
-// .checkbox-container .checkmark:after {
-//     left: 9px;
-//     top: 5px;
-//     width: 5px;
-//     height: 10px;
-//     border: solid white;
-//     border-width: 0 3px 3px 0;
-//     -webkit-transform: rotate(45deg);
-//     -ms-transform: rotate(45deg);
-//     transform: rotate(45deg);
-// }
-
 // ------------------------------------------------
 // Global Elements
 // ------------------------------------------------
@@ -270,11 +211,27 @@ p {
     margin-bottom: 2rem;
 }
 
-
+button {
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+}
 
 // ------------------------------------------------
 // User Definitions
 // ------------------------------------------------
+
+div.banner-ghost {
+    display: block;
+    width: 100vw;
+    height: 90px;
+}
+
+div.content-wrapper {
+    display: grid;
+    grid-template-columns: 1rem 1fr 80vw 1fr 1rem;
+    grid-auto-flow: row;
+}
 
 // ------------------------------------------------
 // Search Page
@@ -283,12 +240,18 @@ p {
 .filters fieldset {
     border: none;
 
-    div:nth-child(odd) {
+    div {
         grid-column: 1;
     }
 
-    div:nth-child(even) {
-        grid-column: 2;
+    @media screen and (min-width: $tablet-w-min) {
+        div:nth-child(odd) {
+            grid-column: 1;
+        }
+
+        div:nth-child(even) {
+            grid-column: 2;
+        }
     }
 
     input[type=checkbox].css-checkbox {
@@ -350,19 +313,33 @@ div.banner {
         justify-content: space-between;
     }
 
-    .logo {
+    .nav-toggle {
 
-        display: inline-block;
+        @media screen and (min-width: $tablet-w-min) {
+            display: none;
+        }
     }
 
-    button.nav-toggle {
-        padding: 1rem 2rem;
+    ul.mobile-nav {
+        margin: 1.5rem 0;
+        text-align: center;
+
+        li {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
     }
 
     nav {
+        display: inline-flex;
+        align-items: center;
+
+        .logo {
+            display: inline-block;
+        }
 
         ul {
-            // margin-top: 2rem;
+            display: none;
             text-align: center;
 
             li {
@@ -370,16 +347,14 @@ div.banner {
             }
         }
 
-
         @media screen and (min-width: $tablet-w-min) {
-            padding: 1rem 0;
 
             ul {
                 display: flex;
                 justify-content: space-between;
                 margin: 0;
+                padding: 0 2rem;
                 text-align: left;
-
 
                 li {
                     margin-bottom: 0;
@@ -401,21 +376,30 @@ div.banner {
 // ------------------------------------------------
 // Main
 // ------------------------------------------------
-main {
-    margin-top: 7rem;
-}
 
 main.no-banner {
     margin-top: 2rem;
 }
 
 main {
-    display: grid;
-    grid-template-columns: 1rem 1fr 80vw 1fr 1rem;
-    grid-auto-flow: row;
+    // display: grid;
+    // grid-template-columns: 1rem 1fr 80vw 1fr 1rem;
+    // grid-auto-flow: row;
+    grid-column: 3 / 4;
+    max-width: 90rem;
+    margin: 0 auto;
+    width: 100%;
 
-    * {
-        grid-column: 3 / 4;
+    // * {
+    //     grid-column: 3 / 4;
+    // }
+
+    div div.content {
+        padding: 0;
+
+        @media screen and (min-width: $tablet-w-min) {
+            padding: 0 2rem;
+        }
     }
 
     header {
@@ -441,7 +425,7 @@ main {
         margin-bottom: 2rem;
 
         @media screen and (min-width: $tablet-w-min) {
-            max-width: 80%;
+            // max-width: 80%;
         }
     }
 
@@ -468,6 +452,7 @@ main {
 
         figcaption {
             display: block;
+            font-size: 1.25rem;
         }
     }
 
@@ -481,6 +466,10 @@ main {
             margin: 0 auto;
             width: 100%;
 
+            li {
+                margin-bottom: 0;
+            }
+
             @media screen and (min-width: $tablet-w-min) {
                 grid-template-columns: repeat(2, 1fr);
 
@@ -493,21 +482,120 @@ main {
                 li:nth-child(even) {
                     grid-column: 2;
                 }
+
+                li {
+                    margin-bottom: 1rem;
+                }
             }
 
 
         }
     }
 
+    .how-to {
+
+        h4 {
+            font-weight: normal;
+        }
+    }
+
     .steps {
         grid-row: 7;
+
+        .content {
+
+            div.step {
+
+                @media screen and (min-width: $tablet-w-min) {
+
+                    display: grid;
+                    grid-gap: 1rem;
+                    grid-template-columns: 50% 1fr;
+                    grid-auto-rows: minmax(min-content, max-content);
+
+                    picture {
+                        grid-column: 1 / 3;
+                        grid-row: 1;
+                        margin-bottom: 0;
+
+                        source,
+                        img {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    picture.split {
+                        grid-column: 1;
+                    }
+
+                    header {
+                        align-self: center;
+                        color: $primary-orange;
+                        font-family: 'Permanent-Marker', $sans;
+                        grid-column: 2;
+                        grid-row: 1;
+                        justify-self: center;
+                        margin: 0 1rem;
+
+                        h4 {
+                            font-size: 1.75rem;
+                            margin: 0;
+                        }
+                    }
+
+                    p {
+                        font-size: 1.125rem;
+                        grid-column: 1 / 3;
+                        grid-row: 2;
+                        line-height: 1.75;
+                    }
+
+                    // p.split {
+                    //     grid-column: 2;
+                    // }
+                }
+
+                @media screen and (min-width: $laptop-w-min) {
+
+                    grid-template-columns: 40% 1fr;
+
+                    header {
+                        align-self: center;
+                        margin: 0 3rem;
+
+                        h4 {
+                            font-size: 2.25rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     // -------------------------------
 
     .results {
-        h4 {
-            text-align: center;
+
+        .card {
+
+            header {
+                margin: 1rem 0;
+
+                h4 {
+                    margin: 1rem;
+                    text-align: left;
+                }
+            }
+
+            .img {
+                padding: 1rem;
+
+                picture,
+                source,
+                img {
+                    margin: 0 auto;
+                }
+            }
         }
     }
 
@@ -533,7 +621,15 @@ h2 {
 }
 
 hr {
-    color: $mid-grey;
+    color: $primary-blue;
+    border-width: 3px;
+    border-block-style: solid;
+}
+
+hr.step {
+    border-width: 1px;
+    margin: 3rem auto;
+    max-width: 50%;
 }
 
 button {
@@ -562,7 +658,7 @@ button:active {
 a {
     color: $primary-orange;
     border-bottom: 2px solid rgba(0, 0, 0, 0);
-    transition: border-bottom 119ms ease-in;
+    transition: border-bottom 119ms ease-in, color 85ms ease-in;
 }
 
 a:hover,
@@ -570,6 +666,16 @@ a:focus {
     // color: #d38250;
     border-bottom: 3px solid $primary-orange;
 }
+
+nav {
+
+    a:hover.logo,
+    a:focus.logo {
+        color: $primary-orange;
+        border-bottom: 2px solid rgba(0, 0, 0, 0);
+    }
+}
+
 
 // ------------------------------------------------
 // User Defined
@@ -582,8 +688,23 @@ a:focus {
 }
 
 .banner {
-
     background-color: #fafafa;
+
+    .nav-toggle {
+        cursor: pointer;
+    }
+
+    .nav-toggle svg g path {
+        transition: stroke 119ms ease-in-out;
+    }
+
+    .nav-toggle:hover svg g path {
+        stroke: $primary-orange;
+    }
+
+    .nav-toggle.active svg g path {
+        stroke: $primary-orange;
+    }
 }
 
 .logo {
@@ -597,14 +718,15 @@ a:focus {
     }
 
     a {
-        background-color: none;
+        background-color: $off-white;
         border: none;
+        box-shadow: $mid-grey 1px 1px 6px;
         transition: box-shadow 119ms ease-in-out, background-color 119ms ease-in-out;
     }
 
     a:hover {
-        background-color: $off-white;
+        background-color: $white;
         border: none;
-        box-shadow: $mid-grey 1px 1px 6px;
+        // box-shadow: none;
     }
 }

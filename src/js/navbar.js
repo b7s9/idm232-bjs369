@@ -1,12 +1,16 @@
 //---------------------------------------------------------------------------
-// Toggle Nav and Search
+// GLOBAL VARS
 //---------------------------------------------------------------------------
 
-const navBtn = document.querySelector('.banner .nav-toggle button');
-const navBtnIco = document.querySelector('.banner .nav-toggle .ico');
-const nav = document.querySelector('nav');
+const navBtn = document.querySelector('.banner .nav-toggle');
+const nav = document.querySelector('.mobile-nav');
+const navOptions = document.querySelectorAll('.mobile-nav li');
 
 let isNavOpen = 0;
+
+//---------------------------------------------------------------------------
+// GLOBAL FUNCTIONS
+//---------------------------------------------------------------------------
 
 const showElement = (el) => {
     el.classList.remove('visually-hidden');
@@ -16,44 +20,28 @@ const hideElement = (el) => {
     el.classList.add('visually-hidden');
 }
 
-const toggleNav = () => {
-
-    // isNavOpen ? hideElement(nav, isNavOpen) : showElement(nav, isNavOpen);
+const toggleNav = (e) => {
+    // console.log(e)
+    // toggleSlide(nav);
     if (isNavOpen) {
         hideElement(nav);
+        navBtn.classList.remove('active');
         isNavOpen = 0;
-    }else {
+    } else {
         showElement(nav);
+        navBtn.classList.add('active');
         isNavOpen = 1;
     }
 
 }
 
-navBtn.addEventListener('click',toggleNav);
-navBtnIco.addEventListener('click',toggleNav);
+//---------------------------------------------------------------------------
+// EVENT LISTENERS
+//---------------------------------------------------------------------------
 
-const searchIco = document.querySelector('.search .ico');
-const searchbar = document.querySelector('.search input');
+navBtn.addEventListener('click', toggleNav);
+// nav.addEventListener('click', toggleNav);
 
-// let isSearchVisible = 0;
-
-// const toggleSearchbar = ()=> {
-//     if(isSearchVisible){
-//         // hideElement(searchIco);
-//         searchbar.style.display = 'none';
-//         isSearchVisible = 1;
-//     }else {
-//         console.log(searchbar)
-//         // showElement(searchIco);
-//         searchbar.style.display = 'block';
-//         isSearchVisible = 0;
-//     }
-// }
-
-// searchIco.addEventListener('click', toggleSearchbar);
-
-
-searchIco.addEventListener('click', (e)=>{
-    window.location.href = 'search.php';
-});
-
+for (const opt of navOptions) {
+    opt.addEventListener('click', toggleNav, false);
+}

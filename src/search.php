@@ -11,6 +11,8 @@
     // }        
     
 ?>
+<div class="content-wrapper">
+
 <main class="no-banner">
         <header class="jumbotron">
             <h1>Füd</h1>            
@@ -18,12 +20,15 @@
 
         <div class="search powerbar">
             <div class="input">
-                <form action="process.php" method="post" name="form" id="form">
+                <form action="process.php" method="post" name="form" class="textForm">
                     <input type="text" name="q" pattern="([A-Za-z])+" placeholder="Search for a recipe..." autocomplete="none">
                 </form>
+                <form action="process.php" method="post" name="form" class="btnForm">
+                    <input type="hidden" name="q" value="">
+                    <button type="submit">Show All Recipes</button>
+                </form>                
             </div>
             <div class="count">
-                <!-- <span>Showing <span class="set">0</span> results</span> -->
                 <span></span>
             </div>
         </div>
@@ -49,19 +54,6 @@
                          
             </fieldset>
 
-            <!-- <ul class="options two-col">
-                <!~~ <li><a href="#">Spicy</a></li>
-                <li><a href="#">Vegetarian</a></li>
-                <li><a href="#">Carnivorous</a></li>
-                <li><a href="#">Ben's Picks</a></li> ~~>                
-                <li><input type="checkbox" name="beef" id=""><label for="beef">Beef</label></li>
-                <li><input type="checkbox" name="poultry" id=""><label for="poultry">Poultry</label></li>
-                <li><input type="checkbox" name="pork" id=""><label for="pork">Pork</label></li>
-                <li><input type="checkbox" name="fish" id=""><label for="fish">Fish</label></li>
-                <li><input type="checkbox" name="seafood" id=""><label for="seafood">Seafood</label></li>
-                <li><input type="checkbox" name="vegetarian" id=""><label for="vegetarian">Vegetarian</label></li>
-            </ul>
-             -->
         </div>
 
         <div class="results" id="results">
@@ -102,6 +94,7 @@
             
         </ul>
     </main>
+    </div>
     <script src="js/search.js"></script>
 <?php
     require_once('includes/_footer.php');
