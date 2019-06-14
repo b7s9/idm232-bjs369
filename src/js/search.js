@@ -92,9 +92,9 @@ const getResponse = (httpRequest) => {
 const processForm = (e) => {
 	e.preventDefault();
 
-	console.group('Event Info');
-	console.log(e);
-	console.groupEnd();
+	// console.group('Event Info');
+	// console.log(e);
+	// console.groupEnd();
 
 	createHttpRequest(e.target);
 };
@@ -179,7 +179,3 @@ searchbar.oninput = function (e) {
 textForm.addEventListener('submit', processForm);
 
 btnForm.addEventListener('submit', processForm);
-
-// allRecipesBtn.addEventListener('click', function (e) {
-// 	console.log(e);
-// });
