@@ -77,8 +77,8 @@
                     //             echo "<div class='img'>";
 
                     //                 echo "<picture>";
-                    //                     echo "<source srcset='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg'>";
-                    //                     echo "<img src='{$recipeImgLink}/{$row['dir']}/beauty_pic.jpg' alt='{$row['title']}'>";
+                    //                     echo "<source media='(min-width: 430px)' srcset='{$recipeImgLink}/{$recipeRow['dir']}/beauty_pic_500.jpg'>";
+                    //                     echo "<img src='{$recipeImgLink}/{$recipeRow['dir']}/beauty_pic_320.jpg' alt='{$recipeRow['title']}'>";
                     //                 echo "</picture>";
 
                     //             echo "</div>";

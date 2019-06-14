@@ -146,8 +146,9 @@ const populateResults = (rows) => {
 		let picture = document.createElement('picture');
 		let source = document.createElement('source');
 		source.setAttribute('srcset', `assets/recipe/${row.dir}/beauty_pic_500.jpg`);
+		source.setAttribute('media', '(min-width: 430px)');
 		let img = document.createElement('img');
-		img.setAttribute('src', `assets/recipe/${row.dir}/beauty_pic_500.jpg`);
+		img.setAttribute('src', `assets/recipe/${row.dir}/beauty_pic_320.jpg`);
 		img.setAttribute('alt', row.title);
 		picture.appendChild(source);
 		picture.appendChild(img);
